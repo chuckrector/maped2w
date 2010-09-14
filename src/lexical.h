@@ -51,9 +51,9 @@ struct hardfunc_t {
 
 extern token_t tok;
 
-typedef std::hash_map<char*, hardfunc_t*>/*, raw_compare>*/ hardfunc_lookup;
-typedef std::hash_map<char*, int> hardvar0_lookup;
-typedef std::hash_map<char*, int> hardvar1_lookup;
+typedef stdext::hash_map<char*, hardfunc_t*>/*, raw_compare>*/ hardfunc_lookup;
+typedef stdext::hash_map<char*, int> hardvar0_lookup;
+typedef stdext::hash_map<char*, int> hardvar1_lookup;
 
 extern hardfunc_lookup hardfuncs_hash;
 extern hardvar0_lookup hardvar0_hash;

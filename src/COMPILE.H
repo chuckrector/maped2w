@@ -117,13 +117,13 @@ extern std::vector<function_t*> functionlist_array;
 extern std::vector<variable_t*> varlist_array;
 extern std::vector<string_sym*> strlist_array;
 
-typedef std::hash_map<char*, variable_t*>/*, raw_compare>*/ variable_lookup;
+typedef stdext::hash_map<char*, variable_t*>/*, raw_compare>*/ variable_lookup;
 extern variable_lookup varlist;
 
-typedef std::hash_map<char*, function_t*>/*, raw_compare>*/ function_lookup;
+typedef stdext::hash_map<char*, function_t*>/*, raw_compare>*/ function_lookup;
 extern function_lookup functionlist;
 
-typedef std::hash_map<char*, string_sym*>/*, raw_compare>*/ string_lookup;
+typedef stdext::hash_map<char*, string_sym*>/*, raw_compare>*/ string_lookup;
 extern string_lookup strlist;
 
 
