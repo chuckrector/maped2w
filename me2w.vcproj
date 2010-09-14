@@ -42,6 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="C:\dev\allegro\include;C:\dev\allegro\Build\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="alleg.lib"
+				AdditionalDependencies="alleg44.lib"
 				OutputFile="$(OutDir)/me2w.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
