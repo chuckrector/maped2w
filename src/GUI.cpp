@@ -559,7 +559,8 @@ struct GUI_TextField: public GUI_Component {
 	void insert_char(int ch) {
 		int L = strlen(text);
 		if (L > 1023) L = 1023;
-		for (int n = L; n > cursor; n--) {
+		int n;
+		for (n = L; n > cursor; n--) {
 			text[n] = text[n - 1];
 		}
 		text[n] = (char)ch;

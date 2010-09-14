@@ -49,7 +49,8 @@ void PCX::save(const char* filename) {
   unsigned short int w1;
   //char fnamestr[13];
   char junk[59];
-  for (int i=0; i<59; i++) {
+  int i;
+  for (i=0; i<59; i++) {
 	  junk[i]=0;
   }
 
