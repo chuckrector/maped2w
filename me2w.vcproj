@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="me2w"
 	ProjectGUID="{6EAAB99F-E0CE-484A-8624-11541527A51D}"
+	RootNamespace="me2w"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>
