@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="alleg44.lib"
+				AdditionalDependencies="C:\dev\allegro\Build\lib\RelWithDebInfo\alleg44.lib"
 				OutputFile="$(OutDir)/me2w.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"

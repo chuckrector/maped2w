@@ -841,7 +841,7 @@ void InitTileIDX()
 }
 
 void CheckTimerStuff()
-{ static inss=0;
+{ static int inss=0;
 
   if (backupct>30000)
   {
