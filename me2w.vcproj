@@ -1,109 +1,172 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="9.00"
 	Name="me2w"
 	ProjectGUID="{6EAAB99F-E0CE-484A-8624-11541527A51D}"
-	Keyword="Win32Proj">
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="131072"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
 			ConfigurationType="1"
-			CharacterSet="2">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
-				MinimalRebuild="TRUE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="FALSE"
-				DebugInformationFormat="4"/>
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="4"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="alleg.lib"
 				OutputFile="$(OutDir)/me2w.exe"
 				LinkIncremental="2"
-				GenerateDebugInformation="TRUE"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/me2w.pdb"
 				SubSystem="2"
-				TargetMachine="1"/>
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="Release"
 			IntermediateDirectory="Release"
 			ConfigurationType="1"
-			CharacterSet="2">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				RuntimeLibrary="4"
-				UsePrecompiledHeader="3"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="2"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)/me2w.exe"
 				LinkIncremental="1"
-				GenerateDebugInformation="TRUE"
+				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				TargetMachine="1"/>
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -112,254 +175,336 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
 			<File
-				RelativePath=".\src\A_MEMORY.cpp">
+				RelativePath=".\src\A_MEMORY.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\browse.cpp">
+				RelativePath=".\src\browse.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\buffer.cpp">
+				RelativePath=".\src\buffer.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\COLUMNS.cpp">
+				RelativePath=".\src\COLUMNS.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Compile.cpp">
+				RelativePath=".\src\Compile.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\compress.cpp">
+				RelativePath=".\src\compress.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\config.cpp">
+				RelativePath=".\src\config.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\controls.cpp">
+				RelativePath=".\src\controls.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\error.cpp">
+				RelativePath=".\src\error.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Funclib.cpp">
+				RelativePath=".\src\Funclib.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\GUI.cpp">
+				RelativePath=".\src\GUI.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\guicomp.cpp">
+				RelativePath=".\src\guicomp.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\KEYBOARD.cpp">
+				RelativePath=".\src\KEYBOARD.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Lexical.cpp">
+				RelativePath=".\src\Lexical.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\log.cpp">
+				RelativePath=".\src\log.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\MAPED.cpp">
+				RelativePath=".\src\MAPED.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\maped2w.cpp">
+				RelativePath=".\src\maped2w.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\MINIMAP.cpp">
+				RelativePath=".\src\MINIMAP.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\MODE13H.cpp">
+				RelativePath=".\src\MODE13H.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\MODEX.cpp">
+				RelativePath=".\src\MODEX.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\MOUSE.cpp">
+				RelativePath=".\src\MOUSE.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\ops.cpp">
+				RelativePath=".\src\ops.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\pcx.cpp">
+				RelativePath=".\src\pcx.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Preproc.cpp">
+				RelativePath=".\src\Preproc.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\RENDER.cpp">
+				RelativePath=".\src\RENDER.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\SMALFONT.cpp">
+				RelativePath=".\src\SMALFONT.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\SSAVER.cpp">
+				RelativePath=".\src\SSAVER.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\SSAVER1.cpp">
+				RelativePath=".\src\SSAVER1.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\TILEED.cpp">
+				RelativePath=".\src\TILEED.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\TILESEL.cpp">
+				RelativePath=".\src\TILESEL.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\TIMER.cpp">
+				RelativePath=".\src\TIMER.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Tokenize.cpp">
+				RelativePath=".\src\Tokenize.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\undo.cpp">
+				RelativePath=".\src\undo.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Vcc.cpp">
+				RelativePath=".\src\Vcc.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\vcc25.cpp">
+				RelativePath=".\src\vcc25.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\VDRIVER.cpp">
+				RelativePath=".\src\VDRIVER.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
 			<File
-				RelativePath=".\src\a_memory.h">
+				RelativePath=".\src\a_memory.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\browse.h">
+				RelativePath=".\src\browse.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\buffer.h">
+				RelativePath=".\src\buffer.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Code.h">
+				RelativePath=".\src\Code.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Colbak.h">
+				RelativePath=".\src\Colbak.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\colstuff.h">
+				RelativePath=".\src\colstuff.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Columns.h">
+				RelativePath=".\src\Columns.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Compile.h">
+				RelativePath=".\src\Compile.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\compress.h">
+				RelativePath=".\src\compress.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Config.h">
+				RelativePath=".\src\Config.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\controls.h">
+				RelativePath=".\src\controls.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\error.h">
+				RelativePath=".\src\error.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Funclib.h">
+				RelativePath=".\src\Funclib.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Gui.h">
+				RelativePath=".\src\Gui.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Guicomp.h">
+				RelativePath=".\src\Guicomp.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Inter.h">
+				RelativePath=".\src\Inter.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Keyboard.h">
+				RelativePath=".\src\Keyboard.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Keys.h">
+				RelativePath=".\src\Keys.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\lexical.h">
+				RelativePath=".\src\lexical.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\log.h">
+				RelativePath=".\src\log.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\maped.h">
+				RelativePath=".\src\maped.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Minimap.h">
+				RelativePath=".\src\Minimap.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Mode13h.h">
+				RelativePath=".\src\Mode13h.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Modex.h">
+				RelativePath=".\src\Modex.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Mouse.h">
+				RelativePath=".\src\Mouse.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Mtypes.h">
+				RelativePath=".\src\Mtypes.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\ops.h">
+				RelativePath=".\src\ops.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\pcx.h">
+				RelativePath=".\src\pcx.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\preproc.h">
+				RelativePath=".\src\preproc.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Render.h">
+				RelativePath=".\src\Render.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Smalfont.h">
+				RelativePath=".\src\Smalfont.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Ssaver.h">
+				RelativePath=".\src\Ssaver.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Tileed.h">
+				RelativePath=".\src\Tileed.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Tilesel.h">
+				RelativePath=".\src\Tilesel.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Timer.h">
+				RelativePath=".\src\Timer.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Tokenize.h">
+				RelativePath=".\src\Tokenize.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\undo.h">
+				RelativePath=".\src\undo.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\vcc.h">
+				RelativePath=".\src\vcc.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\vcc25.h">
+				RelativePath=".\src\vcc25.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\vccode.h">
+				RelativePath=".\src\vccode.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Vdriver.h">
+				RelativePath=".\src\Vdriver.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Vergepal.h">
+				RelativePath=".\src\Vergepal.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\vtypes.h">
+				RelativePath=".\src\vtypes.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
 		</Filter>
 	</Files>
 	<Globals>
