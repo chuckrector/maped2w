@@ -244,10 +244,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\maped2w.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\MINIMAP.cpp"
 				>
 			</File>
