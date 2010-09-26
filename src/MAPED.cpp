@@ -1,7 +1,5 @@
-
 #include "maped.h"
 #include "a_memory.h"
-//#include "config.h"
 #include "gui.h"
 #include "keyboard.h"
 #include "mouse.h"
@@ -17,50 +15,14 @@
 #include "ssaver.h"
 #include "error.h"
 #include "browse.h"
-//
-//#include <cstdio>
-
-//#include <cstdlib>
 #include <cstring>
 #include <stack>
 #include <direct.h>
-//#include <cstdarg>
-
-//#include "cdrom.h"
 #include "compress.h"
-
 #include "controls.h"
 
 const char* ME2_VERSION = "2.4.21 (windows)";
 
-// Includes for a_memory.c
-
-//void *valloc(int amount, char *desc, int owner);
-//void *qvalloc(int amount);
-//int  vfree(void *pointer);
-//void qvfree(void *pointer);
-//void FreeByOwner(int owner);
-//void MemReport(void);
-//void CheckCorruption(void);
-//
-//void ReadCompressedLayer1(unsigned char *dest, int len, FILE *f);
-//void WriteCompressedLayer1(unsigned char *p, int len);
-//
-//void ShellMAP();
-//void CompileAll();
-//void ShellVERGE();
-//void ShellToDOS();
-//void ShellEditMAP();
-//void ShellEditSystem();
-//void CompileMAP();
-//
-//void ProcessEntity(int xw, int yw);
-//int EntityThere(int xw, int yw);
-//void DeleteEntity(int xw, int yw);
-
-// ================================= Data ====================================
-
-//int pageflipping=0;
 int windowed=0;
 
 zoneinfo zones[256];                 // zone stuff.
@@ -109,7 +71,6 @@ char modified=0;                     // Current buffer modified or not.
 
 char is_playing=0;
 char cmname[60];
-//UNIMOD *mf=0;
 
 // -- copy/paste & block fill --
 
@@ -157,35 +118,10 @@ int rnd(int lo, int hi)
 void PlayMusic(char *fname)
 {
   fname=fname;
-  /*
-  if (!soundokay) return;
-  if (is_playing)
-  {
-    MD_PlayStop();
-    ML_Free(mf);
-    is_playing=0;
-  }
-  mf=ML_LoadFN(fname);
-  if (!mf)
-  {
-    Message("Could not load specified music.",500);
-    return;
-  }
-  MP_Init(mf);
-  md_numchn=mf->numchn; mp_loop=1;
-  MD_PlayStart();
-  is_playing=1;
-  */
 }
 
 void StopMusic()
 {
-  /*
-  if (!soundokay) return;
-  MD_PlayStop();
-  ML_Free(mf);
-  is_playing=0;
-  */
 }
 
 void LoadVSP(char *fname)
@@ -223,7 +159,6 @@ void LoadVSP(char *fname)
 			for (int x=0; x<16; x++)
 				putpixel(vsp[index],x,y, data[256*index + y*16+x]);
 	delete[] data;
-    //fread(vspanim, 8, 100, f);
 	for (int index=0; index<100; index++) {
 		fread(&vspanim[index].start,1,2,f);
 		fread(&vspanim[index].finish,1,2,f);
@@ -244,7 +179,6 @@ void LoadVSP(char *fname)
     set_intensity(63);
     fread(&numtiles, 1, 2, f);
 	unsigned char* data = new unsigned char[256*numtiles];
-    //vsp=(unsigned char *) valloc(256*numtiles, "vsp data", 0);
 	vsp = new BITMAP*[numtiles];
 	for (int index=0; index<numtiles; index++)
 		vsp[index]=create_bitmap(16,16);
@@ -258,9 +192,6 @@ void LoadVSP(char *fname)
     fread(vspanim, 8, 100, f);
     fclose(f);
   }
-  //for (int index=0; index<100; index++) {
-	 // Log("start %d, finish %d, delay %d, mode %d",vspanim[index].start,vspanim[index].finish,vspanim[index].delay,vspanim[index].mode);
-  //}
   
   black=makecol(0,0,0);
   white=makecol(255,255,255);
@@ -297,15 +228,8 @@ void SaveVSP(char *fname)
 	  for (int y=0; y<16; y++)
 		  for (int x=0; x<16; x++)
 			  data[256*index + y*16+x] = getpixel(vsp[index],x,y);
-  //Buffer* dest=new Buffer();
-  //WriteCompressedLayer1(dest,data,numtiles*256);
-  //delete[] data;
-  //int length=dest->length(); fwrite(&length,1,4,f);
-  //fwrite(dest->uchar_array(),1,length,f);
-  //delete dest;
   fwrite(data,1,256*numtiles,f);
 
-  //free(bufsize); // what the hell??? @_@
   fwrite(vspanim, 8, 100, f);
   fclose(f);
 }
@@ -390,7 +314,6 @@ void SaveMAP(char *fname)
      fwrite(cb, 1, bufsize, f);
      vfree(cb);
   }
-  // Compress and write Obstruction data
 
   cb=(char *) valloc(layer[0].sizex*layer[0].sizey*2, "cmprs buf", 0);
   WriteCompressedLayer1((unsigned char *)obstruct, (layer[0].sizex*layer[0].sizey));
@@ -417,7 +340,6 @@ void SaveMAP(char *fname)
   fwrite(chrlist, 60, nmchr, f);
 
   fwrite(&entities, 1, 1, f);
-  //fwrite(entity, sizeof(entity)/256, entities, f);
   for (int index=0; index<entities; index++) {
 	  entity_r* e=&entity[index];
 	  fwrite(&e->x,1,4,f);
@@ -440,8 +362,8 @@ void SaveMAP(char *fname)
 	  fwrite(&padding[0],1,1,f);
 
 	  int empty=0;
-	  fwrite(&empty,1,4,f); //fwrite(e->animofs,1,4,f);
-	  fwrite(&empty,1,4,f); //fwrite(e->moveofs,1,4,f);
+	  fwrite(&empty,1,4,f);
+	  fwrite(&empty,1,4,f);
 	  
 	  fwrite(&e->face,1,1,f);
 	  fwrite(&e->actm,1,1,f);
@@ -480,7 +402,7 @@ void SaveMAP(char *fname)
     ct+=t;
   }
   fwrite(&ct, 1, 4, f);        // string table length
-  fwrite(ofstbl, nms, 4, f);  // write offset buffer
+  fwrite(ofstbl, nms, 4, f);  // write offsets buffer
   for (i=0; i<nms; i++)        // write string table
   {
     fwrite(ms[i].t, 1, strlen(ms[i].t)+1, f);
@@ -532,8 +454,6 @@ void LoadOldMAP(FILE *f)
   fread(layers[1], 2, layer[1].sizex * layer[1].sizey, f);
   fread(cb,        1, layer[0].sizex * layer[0].sizey, f);
 
-  // Convert MAP Properties layer to respective Zone and Obstruction layers
-
   for (j=0; j<layer[0].sizey; j++)
     for (i=0; i<layer[0].sizex; i++)
     {
@@ -544,8 +464,6 @@ void LoadOldMAP(FILE *f)
        zone[(j*layer[0].sizex)+i]=c;
     }
   vfree(cb);
-
-  // Load and convert zone data records.
 
   for (i=0; i<128; i++)
   {
@@ -558,14 +476,13 @@ void LoadOldMAP(FILE *f)
     memcpy(zones[i].name, tzone.zonename, 16);
   }
 
-  for (i=0; i<100; i++)                  // Load and convert CHR list
+  for (i=0; i<100; i++)
     fread(chrlist[i].t, 1, 13, f);
-//  DoCHRdealy();
 
   fread(&entities, 1, 1, f); fseek(f, 3, 1);
   memset(entity, 0, sizeof entity);
   Log("old entities:");
-  for (i=0; i<entities; i++)             // Load and convert entity records
+  for (i=0; i<entities; i++)
 	{
 		oldent_r* o=&oldent;
 		fread(&o->x,1,2,f);				Log("  x=%d",o->x);
@@ -610,7 +527,6 @@ void LoadOldMAP(FILE *f)
 		fread(&o->cy,1,2,f);			Log("  cy=%d",o->cy);
 		fread(&o->expand1,1,4,f);
 		fread(o->entitydesc,1,20,f);	Log("  entitydesc=%s", o->entitydesc);
-		//fread(&oldent, 1, 88, f);
 
 		entity[i].x=o->x;
 		entity[i].y=o->y;
@@ -740,10 +656,8 @@ void LoadMAP(char *fname)
   fread(&bufsize, 1, 4, f);
   ReadCompressedLayer1((unsigned char *)zone,(layer[0].sizex * layer[0].sizey), f);
 
-  //memset(zones, 0, sizeof zones);
   fread(&numzones, 1, 4, f);
   Log("numzones: %d", numzones);
-  //fread(zones, numzones, 50, f);
   for (int index=0; index<numzones; index++) {
 	  fread(zones[index].name,1,40,f);
 	  fread(&zones[index].script,1,2,f);
@@ -757,11 +671,9 @@ void LoadMAP(char *fname)
   fread(&nmchr, 1, 1, f);
   Log("num chars: %d", nmchr);
   fread(chrlist, 60, nmchr, f);
-//  DoCHRdealy();
 
   fread(&entities, 1, 1, f);
   Log("# entities: %d", entities);
-  //fread(entity, sizeof(entity)/256, entities, f);
   for (int index=0; index<entities; index++) {
 	  entity_r* e=&entity[index];
 	  fread(&e->x,1,4,f);
@@ -865,7 +777,6 @@ void SaveNewCFG()
 { FILE *f;
 
   f=fopen("maped.cfg","w");
-  //if (nocdaudio) fprintf(f,"nocdaudio\n");
   fprintf(f,"vidmode %d \n", vm);
   fprintf(f,"pad %d \n", pad);
   fprintf(f,"scrollmode %d \n",scrollmode);
@@ -878,7 +789,6 @@ void SaveNewCFG()
   fprintf(f,"titlebg %d \n",titlebg);
   fprintf(f,"th %d \n", th);
   fprintf(f,"mh %d \n", mh);
-  //fprintf(f,"md_device %d \n", md_device==3?3:0);
   fprintf(f,"amxofs %d \n",amxofs);
   fprintf(f,"amyofs %d \n",amyofs);
   fprintf(f,"mmxofs %d \n",mmxofs);
@@ -903,267 +813,42 @@ void SaveNewCFG()
   fprintf(f,"rsyofs %d \n",rsyofs);
   fprintf(f,"vcedprog %s \n",vcedprog);
   fprintf(f,"difficulty %d \n",difficulty);
-//  fprintf(f,"pageflipping %d \n",pageflipping);
   fprintf(f,"windowed %d \n",windowed);
   fclose(f);
 }
 
-//#include "controls.cpp"
-
 void ShellToDOS()
 {
-  //ShutdownVideo();
-  //ShutdownKeyboard();
-  //ShutdownTimer();
-  ///*
-  //MD_PlayStop();
-  //MD_Exit();
-  //*/
-
-  //system("COMMAND.COM");
-
-  ///*
-  //if (!MD_Init())
-  //{
-  //  printf("Couldn't initialize sound: %s.\n", myerr);
-  //  delay(500);
-  //  soundokay=0;
-  //}
-  //if (strlen(musname)) PlayMusic(musname);
-  //*/
-  //if (1==vm)
-  //InitVideo(640,480,120,false);
-  //else InitVideo(320,240,120,false);
-  //set_intensity(63);
-  //InitMouse();
-  //InitKeyboard();
-  //InitTimer();
 }
 
 void ShellVERGE()
 {
- // ShutdownVideo();
- // ShutdownKeyboard();
- // ShutdownTimer();
- // /*
- // MD_PlayStop();
- // MD_Exit();
- // */
-
- // system("VERGE");
-
- // /*
- // if (!MD_Init())
- // {
- //   printf("Couldn't initialize sound: %s.\n", myerr);
- //   delay(500);
- //   soundokay=0;
- // }
- // if (strlen(musname)) PlayMusic(musname);
- // */
- // if (1==vm)
-	//InitVideo(640,480,120,false);
- // else InitVideo(320,240,120,false);
- // set_intensity(63);
- // InitMouse();
- // InitKeyboard();
- // InitTimer();
 }
 
 void ShellMAP()
 {
- // ShutdownVideo();
- // ShutdownKeyboard();
- // ShutdownTimer();
- // /*
- // MD_PlayStop();
- // MD_Exit();
- // */
-
- // sprintf(strbuf,"verge %s",mapname);
- // system(strbuf);
-
- // /*
- // if (!MD_Init())
- // {
- //   printf("Couldn't initialize sound: %s.\n", myerr);
- //   delay(500);
- //   soundokay=0;
- // }
- // if (strlen(musname)) PlayMusic(musname);
- // */
- // if (1==vm)
-	//InitVideo(640,480,120,false);
- // else InitVideo(320,240,120,false);
- // set_intensity(63);
- // InitMouse();
- // InitKeyboard();
- // InitTimer();
 }
 
 void ShellEditMAP()
 {
- // char fn[80];
- // char *p;
-
- // key[KEY_ALT]=0;
- // key[KEY_V]=0;
- // ShutdownVideo();
- // ShutdownKeyboard();
- // ShutdownTimer();
- // /*
- // MD_PlayStop();
- // MD_Exit();
- // */
-
- // sprintf(fn,"%s",mapname);
- // p=fn;
- // while (*p)
- // {
- //   if (*p=='.') *p=0;
- //   p++;
- // }
- // sprintf(strbuf,"%s %s.vc", vcedprog, fn);
- // system(strbuf);
-
- // /*
- // if (!MD_Init())
- // {
- //   printf("Couldn't initialize sound: %s.\n", myerr);
- //   delay(500);
- //   soundokay=0;
- // }
- // if (strlen(musname)) PlayMusic(musname);
- // */
-	//if (1==vm)
-	//InitVideo(640,480,120,false);
-	//else InitVideo(320,240,120,false);
- // set_intensity(63);
- // InitMouse();
- // InitKeyboard();
- // InitTimer();
 }
 
 void ShellEditSystem()
 {
- // key[KEY_ALT]=0;
- // key[KEY_S]=0;
- // ShutdownVideo();
- // ShutdownKeyboard();
- // ShutdownTimer();
- // /*
- // MD_PlayStop();
- // MD_Exit();
- // */
-
- // sprintf(strbuf,"%s system.vc", vcedprog);
- // system(strbuf);
-
- // /*
- // if (!MD_Init())
- // {
- //   printf("Couldn't initialize sound: %s.\n", myerr);
- //   delay(500);
- //   soundokay=0;
- // }
- // if (strlen(musname)) PlayMusic(musname);
- // */
- // if (1==vm)
-	//InitVideo(640,480,120,false);
- // else InitVideo(320,240,120,false);
- // set_intensity(63);
- // InitMouse();
- // InitKeyboard();
- // InitTimer();
 }
 
 char s[256];
 
 void CompileAll()
 {
-  //FILE *f;
-  //char *p;
-
-  ///*
-  //MD_PlayStop();
-  //MD_Exit();
-  //*/
-
-  //sprintf(strbuf,"vcc all q",mapname);
-  //system(strbuf);
-
-  ///*
-  //if (!MD_Init())
-  //{
-  //  printf("Couldn't initialize sound: %s.\n", myerr);
-  //  delay(500);
-  //  soundokay=0;
-  //}
-  //if (strlen(musname)) PlayMusic(musname);
-  //*/
-
-  //f=fopen("error.txt","r");
-  //if (!f)
-  //{
-  //  Message("All VC scripts sucessfully compiled.",300);
-  //  return;
-  //}
-
-  //fgets(s,99,f);
-  //fclose(f);
-  //p=s;
-  //while (*p)
-  //{
-  //  if (*p==13 || *p==10) *p=0;
-  //  p++;
-  //}
-  //VCNotify(s);
 }
 
 void CompileMAP()
 {
-  //FILE *f;
-  //char *p;
-
-  ///*
-  //MD_PlayStop();
-  //MD_Exit();
-  //*/
-
-  //sprintf(strbuf,"vcc %s q",mapname);
-  //system(strbuf);
-
-  ///*
-  //if (!MD_Init())
-  //{
-  //  printf("Couldn't initialize sound: %s.\n", myerr);
-  //  delay(500);
-  //  soundokay=0;
-  //}
-  //if (strlen(musname)) PlayMusic(musname);
-  //*/
-
-  //f=fopen("error.txt","r");
-  //if (!f)
-  //      return;
-
-  //fgets(s,99,f);
-  //fclose(f);
-  //p=s;
-  //while (*p)
-  //{
-  //  if (*p==13 || *p==10) *p=0;
-  //  p++;
-  //}
-  //VCNotify(s);
 }
 
 void tickhandler(void)
 {
-  /*
-  MP_HandleTick();
-  MD_SetBPM(mp_bpm);
-  */
 }
 
 void RenderHighlight()
@@ -1231,32 +916,9 @@ void DeleteEntity(int xw, int yw)
 
 #include "vergepal.h"
 
-void experiment() {
-	InitVideo(640,480,60,false);
-	install_keyboard();
-
-   BITMAP* background = load_bitmap("c:\\bmp2map\\island.pcx", pal);
-   set_palette(pal);
-	LoadTransTable();
-
-   do {
-	   poll_mouse();
-	   rectfill(get_offscreen(),0,0,SCREEN_W,SCREEN_H,0);
-	   draw_sprite(get_offscreen(),background,0,0);
-	   draw_trans_sprite(get_offscreen(),background,50,50);
-	   ShowPage();
-
-   } while (!keypressed());
-   clear_keybuf();
-
-	allegro_exit();
-	exit(-1);
-}
-
 int main(int argc, char *argv[]) {
 	cwd_prefix[0]='\0';
 	allegro_init();
-	//experiment();
 
 	if (argc==2 && !exists(argv[1])) {
 		allegro_message("File does not exist: %s\n",argv[1]);
@@ -1291,24 +953,20 @@ int main(int argc, char *argv[]) {
 			vpal[index].b=vergepal[3*index+2];
 		}
 		SetPalette(vpal);//vergepal);
-		//memcpy(pal, vergepal, 768);
 		memcpy(mapname,"UNTITLED.MAP",13);
 		memcpy(vspname,"UNTITLED.VSP",13);
 		memcpy(rstring,"1E",2);
 		numlayers=1;
 
-		// aen: default newmap dimensions set to 100x100
 		layer[0].pmultx=1;  layer[0].pmulty=1;
 		layer[0].pdivx=1;   layer[0].pdivy=1;
 		layer[0].sizex=100; layer[0].sizey=100;
 		layer[0].trans=0;   layer[0].hline=0;
 
 		layers[0]=(unsigned short *) valloc((layer[0].sizex*layer[0].sizey*2)+4,"layer data",0);
-		//memset(layers[0],0,(layer[0].sizex*layer[0].sizey)*2);
 		obstruct=(char *) valloc((layer[0].sizex*layer[0].sizey)+4,"obstruct map",0);
 		zone=(char *) valloc((layer[0].sizex*layer[0].sizey)+4,"zone map", 0);
 
-		// aen: default number of tiles set to 100
 		numtiles=100;
 		vsp=new BITMAP*[numtiles];//(unsigned char *) valloc(256 * numtiles,"vsp data", 0);
 		for (int index=0; index<numtiles; index++) {
@@ -1332,25 +990,17 @@ int main(int argc, char *argv[]) {
 
 thingy:
 	while (!(key[KEY_ALT] && key[KEY_X])) {
-		//Log("ProcessControls()");
 		ProcessControls();
 		while (tick) {
 			tick--;
-			//Log("PollMovement()");
 			PollMovement();
-			//Log("CheckTileAnimation()");
 			CheckTileAnimation();
 		}
-		//Log("RenderMap()");
 		RenderMap();
-		//Log("RenderHighlight()");
 		RenderHighlight();
-		//Log("RenderGUI()");
 		RenderGUI();
-		//Log("ShowPage()");
 		ShowPage();
 	}
-	//Log("Exiting main loop");
 
 	if (modified) {
 		if (!Confirm("Lose unsaved changes?")) {
@@ -1359,7 +1009,6 @@ thingy:
 			goto thingy;
 		}
 	}
-	//Log("Exited main loop");
 
 	ShutdownVideo();
 	ShutdownKeyboard();
@@ -1367,15 +1016,6 @@ thingy:
 	SaveNewCFG();
 	remove("$$BACKUP.MAP");
 	remove("$$BACKUP.VSP");
-
-        /*
-        if (curtrack != 1)
-		CD_Stop();
-        CD_DeInit();
-        MD_PlayStop();
-        ML_Free(mf);
-        MD_Exit();
-        */
 
 	return 0;
 }
