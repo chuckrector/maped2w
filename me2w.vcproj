@@ -312,10 +312,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\vcc25.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\VDRIVER.cpp"
 				>
 			</File>
@@ -475,10 +471,6 @@
 			</File>
 			<File
 				RelativePath=".\src\vcc.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\vcc25.h"
 				>
 			</File>
 			<File
