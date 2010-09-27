@@ -456,7 +456,8 @@ struct GUI_TextField: public GUI_Component {
 		if (keypressed()) {
 			int ch = 0;
 			int r = readkey();
-			FILE* fp = fopen("crap.txt", "a");
+			FILE* fp;
+			fopen_s(&fp, "crap.txt", "a");
 			fprintf(fp, "r=%d\n", r);
 			fclose(fp);
 			int shifted = 0;
@@ -932,6 +933,7 @@ void ImageToLayer()
 
   int i,j,k,m;
   FILE *f=0;
+  errno_t error;
   int num_padx=0,num_pady=0; // in tiles
   int minpadx=0,minpady=0; // in tiles
   int tilesx=0,tilesy=0; // in tiles
@@ -1071,9 +1073,8 @@ void ImageToLayer()
       }
       Browse(1, "*.pcx", "", "", "", txt_imagename);
       key[KEY_ESC]=0; // just in case ESC exited
-      f=fopen(txt_imagename, "rb");
-      if (f)
-      {
+      error = fopen_s(&f, txt_imagename, "rb");
+      if (!error) {
 		  if (pcx->data)
 			  delete[] pcx->data;
 		  pcx->load(txt_imagename);

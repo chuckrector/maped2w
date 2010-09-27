@@ -10,7 +10,8 @@ void Log(const char* fmt, ...) {
 	vsprintf(buffer, fmt, args);
 	va_end(args);
 
-	FILE* f=fopen(LOGFILE,"a");
+	FILE* f;
+	fopen_s(&f, LOGFILE, "a");
 	fprintf(f,"%s\n",buffer);
 	fflush(f);
 	fclose(f);

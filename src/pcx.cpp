@@ -56,7 +56,8 @@ void PCX::save(const char* filename) {
 
   // Takes a snapshot of the current screen.
 
-   FILE* pcxf = fopen(filename,"wb");
+   FILE* pcxf;
+   fopen_s(&pcxf, filename, "wb");
 
 // Write PCX header
 
@@ -141,7 +142,8 @@ void PCX::decodeLine(int offset, FILE* pcxf) {
 
 void PCX::load(const char* filename) {
 	FILE* pcxf;
-    if (!(pcxf=fopen(filename,"rb"))) err("Could not open specified PCX file.");
+	errno_t error = fopen_s(&pcxf, filename, "rb");
+    if (error) err("Could not open specified PCX file.");
 	fread(&header.manufacturer,1,1,pcxf);
 	fread(&header.version,1,1,pcxf);
 	fread(&header.encoding,1,1,pcxf);

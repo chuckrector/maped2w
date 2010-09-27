@@ -90,8 +90,9 @@ RGB_MAP rgb_table;
 COLOR_MAP trans_table;
 
 void LoadTransTable() {
-	FILE *fp=fopen("trans.tbl","rb");
-	if (fp) {
+	FILE* fp;
+	errno_t error = fopen_s(&fp, "trans.tbl", "rb");
+	if (!error) {
 		for (int y=0; y<256; y++) {
 			for (int x=0; x<256; x++) {
 				trans_table.data[y][x]=fgetc(fp);
@@ -127,13 +128,15 @@ void StopMusic()
 void LoadVSP(char *fname)
 { FILE *f;
   short ver;
+  errno_t error;
 
   char bb[1024];
   sprintf(bb,"%s%s",cwd_prefix,fname);
 
-  f=fopen(bb,"rb");
-  if (!f)
+  error = fopen_s(&f, bb, "rb");
+  if (error) {
      err("VSP file %s not found.",bb);
+  }
 
   fread(&ver, 1, 2, f);
   if (ver!=2 && ver!=3)
@@ -210,7 +213,7 @@ void SaveVSP(char *fname)
   char bb[1024];
   sprintf(bb,"%s%s",cwd_prefix,fname);
 
-  f=fopen(bb,"wb");
+  fopen_s(&f, bb,"wb");
   ver=2; //3;
   fwrite(&ver, 1, 2, f);
  unsigned char p[768];
@@ -283,7 +286,7 @@ void SaveMAP(char *fname)
 
 	char bb[1024];
 	sprintf(bb,"%s%s",cwd_prefix,fname);
-  f=fopen(bb, "wb");
+  fopen_s(&f, bb, "wb");
 
   char* signature="MAPù5\0";
   fwrite(signature,1,6,f);
@@ -591,6 +594,7 @@ void LoadOldMAP(FILE *f)
 
 void LoadMAP(char *fname)
 { FILE *f;
+	errno_t error;
   int i, ct;
   int ofstbl[100];
 
@@ -598,9 +602,10 @@ void LoadMAP(char *fname)
   sprintf(bb,"%s%s",cwd_prefix,fname);
 
   Log("Loading map: %s", bb);
-  f=fopen(bb, "rb");
-  if (!f)
+  error = fopen_s(&f, bb, "rb");
+  if (error) {
         err("Could not find %s.",bb);
+  }
   char signature[6];
   fread(signature, 1, 6, f);
   if (strcmp(signature,"MAPù5"))
@@ -776,7 +781,7 @@ extern int difficulty;
 void SaveNewCFG()
 { FILE *f;
 
-  f=fopen("maped.cfg","w");
+  fopen_s(&f, "maped.cfg", "w");
   fprintf(f,"vidmode %d \n", vm);
   fprintf(f,"pad %d \n", pad);
   fprintf(f,"scrollmode %d \n",scrollmode);

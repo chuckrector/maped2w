@@ -1159,6 +1159,7 @@ void ImportTiles()
 
 void ImportVSP()
 { FILE *f;
+	errno_t error;
   unsigned short ver;
   char fname[60];
   int bsize;
@@ -1167,9 +1168,10 @@ void ImportVSP()
   bmode=1; oh=th; th=0;
   Browse(1,"*.vsp","","","",fname);
   if (strlen(fname)<3) return;
-  f=fopen(fname,"rb");
-  if (!f)
+  error = fopen_s(&f, fname, "rb");
+  if (error) {
      err("VSP file %s not found.",fname);
+  }
   WaitRelease(); th=oh; bmode=0;
 
   fread(&ver, 1, 2, f);

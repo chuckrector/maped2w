@@ -173,11 +173,13 @@ struct include_t
 	include_t(char* fname)
 	{
 		FILE*	in;
+		errno_t error;
 		int		z;
 
-		in = fopen(fname, "rb");
-		if (!in)
+		error = fopen_s(&in, fname, "rb");
+		if (error) {
 			pp_error("unable to open %s", fname);
+		}
 
 		// filelength
 		fseek(in, 0, SEEK_END);
@@ -220,12 +222,12 @@ int logging=1;
 void pp_log(char* str)
 {
 	FILE*	fp	=0;
+	errno_t error;
 
 	if (!logging) return;
 
-	fp	=fopen("error.log", "a");
-	if (!fp)
-	{
+	error = fopen_s(&fp, "error.log", "a");
+	if (error) {
 		pp_error("pp_log: unable to open error.log");
 	}
 	fprintf(fp, str);
@@ -1059,9 +1061,8 @@ void PreProcess(char* filename)
 
 	init_pp_chr_table();
 
-	pp_out	=fopen("VCCTEMP.$$$", "wb");
-	if (!pp_out)
-	{
+	errno_t error = fopen_s(&pp_out, "VCCTEMP.$$$", "wb");
+	if (error) {
 		pp_error("PreProcess: unable to open VCCTEMP.$$$ for writing");
 	}
 

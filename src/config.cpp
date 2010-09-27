@@ -67,8 +67,8 @@ void GetConfig(char *fname)
 {
   strbuf=(char *) valloc(2000,"strbuf!",0);
   InitializeDefaults();
-  if (!(cfg=fopen(fname,"r")))
-  {
+  errno_t error = fopen_s(&cfg, fname, "r");
+  if (error) {
     printf("Unable to open config file. Using defaults... \n");
     return;
   }

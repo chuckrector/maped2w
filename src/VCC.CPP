@@ -117,7 +117,8 @@ void err(char *message, ...)
 	va_end   (lst);
 
 	if (quiet) {
-		FILE *efile = fopen("ERROR.TXT", "w");
+		FILE* efile;
+		fopen_s(&efile, "ERROR.TXT", "w");
 		fprintf(efile, "%s \n", string);
 		fclose(efile);
 	} else {
@@ -148,15 +149,15 @@ void log(char* message, ...)
 	va_list lst;
 	static char temp[1024];
 	FILE* fp;
+	errno_t error;
 
 	temp[0]='\0';
 	va_start(lst, message);
 	vsprintf(temp, message, lst);
 	va_end(lst);
 
-	fp=fopen("VCC.LOG", "a+");
-	if (!fp)
-	{
+	error = fopen_s(&fp, "VCC.LOG", "a+");
+	if (error) {
 		err("log: unable to open VCC.LOG for writing");
 	}
 	fprintf(fp, temp);
@@ -179,6 +180,7 @@ void DestroyEventMarkers()
 void vcc_compile_mode_map(_finddata_t found, int maxsize, bool readSysIdx)
 {
 	FILE	*outfile, *infile;
+	errno_t error;
 	char *x	=0;
 	int z	=0;
 
@@ -194,9 +196,8 @@ void vcc_compile_mode_map(_finddata_t found, int maxsize, bool readSysIdx)
 	CompileMAP(found,maxsize,readSysIdx);
 
 // append map extension and open
-	infile = fopen(va("%s.map", found.name), "rb+");
-	if (!infile)
-	{
+	error = fopen_s(&infile, va("%s.map", found.name), "rb+");
+	if (error) {
 		err("unable to open %s.", va("%s.map", found.name));
 	}
 
@@ -207,9 +208,8 @@ void vcc_compile_mode_map(_finddata_t found, int maxsize, bool readSysIdx)
 	fread(&z, 1, 4, infile);
 	fseek(infile, 0, SEEK_SET);
 
-	outfile = fopen("outtemp.$$$", "wb");
-	if (!outfile)
-	{
+	error = fopen_s(&outfile, "outtemp.$$$", "wb");
+	if (error) {
 		err("unable to open outtemp.$$$");
 	}
 
@@ -257,6 +257,7 @@ void vcc_compile_mode_map(_finddata_t found, int maxsize, bool readSysIdx)
 void DumpSystemVCS()
 {
 	FILE*	f;
+	errno_t error;
 	int		n;
 	char	buf[8];
 	char*	index;
@@ -265,22 +266,21 @@ void DumpSystemVCS()
 	n = 0;
 	buf[0] = '\0';
 
-	f = fopen("system.xvc", "rb");
+	error = fopen_s(&f, "system.xvc", "rb");
 // ensure system.xvc exists; if not at this point, just create empty one
-	if (!f)
-	{
-		f = fopen("system.xvc", "wb");
-		if (!f)
+	if (error) {
+		error = fopen_s(&f, "system.xvc", "wb");
+		if (error) {
 			err("DumpSystemVCS: error opening system.xvc for writing.");
+		}
 		fwrite(xvc_sig, 1, 8, f);
 		n = 8+4;
 		fwrite(&n, 1, 4, f);
 	}
 	fclose(f);
 
-	f = fopen("system.xvc", "rb");
-	if (!f)
-	{
+	error = fopen_s(&f, "system.xvc", "rb");
+	if (error) {
 		err("DumpSystemVCS: unable to open system.xvc");
 	}
 
@@ -305,9 +305,8 @@ void DumpSystemVCS()
 
 	fclose(f);
 
-	f = fopen("system.xvc", "wb");
-	if (!f)
-	{
+	error = fopen_s(&f, "system.xvc", "wb");
+	if (error) {
 		err("DumpSystemVCS: unable to open system.xvc for code append");
 	}
 

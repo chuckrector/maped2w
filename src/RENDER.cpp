@@ -36,6 +36,7 @@ chri chrs[100];
 void DoCHR(int i) // hee hee!
 {
   FILE *f;
+  errno_t error;
   char b;
   int q;
   short numframes;
@@ -52,9 +53,8 @@ void DoCHR(int i) // hee hee!
     chrs[i].hx=chrs[i].hy=0;
     return;
   }
-  f=fopen(chrlist[i].t,"rb");
-  if (!f)
-  {
+  error = fopen_s(&f, chrlist[i].t,"rb");
+  if (error) {
     if (chrs[i].frame) vfree(chrs[i].frame);
     chrs[i].frame=0;
     chrs[i].fx=chrs[i].fy=0;

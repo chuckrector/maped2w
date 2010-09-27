@@ -1209,6 +1209,7 @@ char	xvc_sig[9]="VERGE2X\0";
 void DumpSystemIdx()
 {
 	FILE*	f;
+	errno_t error;
 	int		n, x;
 	char*	code;
 	int		code_length;
@@ -1224,9 +1225,8 @@ void DumpSystemIdx()
 	vprint("Dumping index portion of system.xvc.");
 
 // does SYSTEM.XVC already exist?
-	f = fopen("system.xvc", "rb");
-	if (f)
-	{
+	error = fopen_s(&f, "system.xvc", "rb");
+	if (!error) {
 	// check signature
 		fread(buf, 1, 8, f);
 		if (strncmp(buf, xvc_sig, 7))
@@ -1250,9 +1250,8 @@ void DumpSystemIdx()
 		fclose(f);
 	}
 
-	f = fopen("system.xvc", "wb");
-	if (!f)
-	{
+	error = fopen_s(&f, "system.xvc", "wb");
+	if (error) {
 		err("DumpSystemIDX: error opening system.xvc for writing index");
 	}
 
@@ -1367,14 +1366,14 @@ void DestroyLists()
 void ReadSystemIdx()
 {
 	FILE*	f;
+	errno_t error;
 	int		n;
 	char	buf[8];
 
 	DestroyLists();
 
-	f = fopen("system.xvc","rb");
-	if (!f)
-	{
+	error = fopen_s(&f, "system.xvc","rb");
+	if (error) {
 		err("ReadSystemIdx: could not open system.xvc to access index");
 	}
 
@@ -2154,8 +2153,9 @@ void LoadSource(int size, int maxsize)
 		}
 	}
 
-	FILE* f=fopen("vcctemp.$$$","rb");
-	if (!f) {
+	FILE* f;
+	errno_t error = fopen_s(&f, "vcctemp.$$$","rb");
+	if (error) {
 		err("Could not open source file.");
 	}
 	fseek(f,0,SEEK_END);
